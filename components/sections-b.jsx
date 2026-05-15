@@ -1,12 +1,12 @@
 // NJS — Gallery, Testimonials, Service Area, Contact, Footer
 
 const PROJECTS = [
-{ id: "p1", name: "Coastal Master Bath", city: "Virginia Beach", cat: "Bathroom", year: "2025", note: "Wet-room shower · honed marble · brass" },
-{ id: "p2", name: "Open Galley Kitchen", city: "Norfolk", cat: "Kitchen", year: "2025", note: "Wall removed · quartz · custom oak" },
-{ id: "p3", name: "Wraparound Porch Refresh", city: "Williamsburg", cat: "Exterior", year: "2024", note: "New decking · trim · paint" },
-{ id: "p4", name: "Guest Bath Refresh", city: "Hampton", cat: "Bathroom", year: "2024", note: "Tile-to-ceiling · floating vanity" },
-{ id: "p5", name: "Family Kitchen Reset", city: "Chesapeake", cat: "Kitchen", year: "2024", note: "Island · pantry · range hood" },
-{ id: "p6", name: "Front Elevation", city: "Yorktown", cat: "Exterior", year: "2023", note: "Hardie siding · new entry" }];
+{ id: "p1", name: "Coastal Master Bath", city: "Virginia Beach", cat: "Bathroom", year: "2025", note: "Wet-room shower · honed marble · brass", img: "assets/baño 1.png" },
+{ id: "p2", name: "Open Galley Kitchen", city: "Norfolk", cat: "Kitchen", year: "2025", note: "Wall removed · quartz · custom oak", img: "assets/cocina 3.png" },
+{ id: "p3", name: "Wraparound Porch Refresh", city: "Williamsburg", cat: "Exterior", year: "2024", note: "New decking · trim · paint", img: "assets/exterior 1.png" },
+{ id: "p4", name: "Guest Bath Refresh", city: "Hampton", cat: "Bathroom", year: "2024", note: "Tile-to-ceiling · floating vanity", img: "assets/baño 2.png" },
+{ id: "p5", name: "Family Kitchen Reset", city: "Chesapeake", cat: "Kitchen", year: "2024", note: "Island · pantry · range hood", img: "assets/cocina 4.png" },
+{ id: "p6", name: "Front Elevation", city: "Yorktown", cat: "Exterior", year: "2023", note: "Hardie siding · new entry", img: "assets/exterior 2.png" }];
 
 
 function Gallery() {
@@ -51,7 +51,6 @@ function Gallery() {
           gap: 24
         }} className="gallery-grid">
           {filtered.map((p, i) => {
-            // alternate sizes for editorial rhythm
             const span = i % 5 === 0 ? 7 : i % 5 === 1 ? 5 : i % 5 === 2 ? 5 : i % 5 === 3 ? 7 : 6;
             const rows = i % 5 === 0 || i % 5 === 3 ? 2 : 1;
             return (
@@ -66,13 +65,11 @@ function Gallery() {
                 display: "block",
                 minHeight: rows === 2 ? 580 : 280
               }} className="project-card">
-                <image-slot
-                  id={`gallery-${p.id}`}
-                  shape="rect"
-                  radius="0"
-                  placeholder={`${p.cat} · ${p.city}`}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-                </image-slot>
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                />
                 <div style={{
                   position: "absolute",
                   inset: 0,
@@ -103,19 +100,17 @@ function Gallery() {
                   <Icon.ArrowUR size={16} />
                 </div>
               </a>);
-
           })}
         </div>
       </div>
     </section>);
-
 }
+
 /*
 const TESTIMONIALS = [
 { quote: "From the first walk-through to the final clean, this team showed up like the project was their own home. The bathroom looks like a magazine, but more than that, the experience was just easy.", name: "Lauren & Mike P.", project: "Master bath · Virginia Beach", rating: 5 },
 { quote: "We've been through two renovations before. NJS is the first crew that actually finished when they said they would, with no surprise costs and a punch list of zero by week's end.", name: "David R.", project: "Kitchen remodel · Norfolk", rating: 5 },
 { quote: "Our porch was rotting and we were dreading the project. They made it painless. The team was respectful with our kids around and the porch looks better than the day we bought the house.", name: "The Carter Family", project: "Wraparound porch · Williamsburg", rating: 5 }];
-
 
 function Testimonials() {
   const [i, setI] = React.useState(0);
@@ -139,7 +134,6 @@ function Testimonials() {
             </div>
           </div>
         </div>
-
         <div style={{
           background: "var(--cream)",
           padding: "64px clamp(40px, 6vw, 80px)",
@@ -190,7 +184,6 @@ function Testimonials() {
         </div>
       </div>
     </section>);
-
 }
 */
 
@@ -260,7 +253,6 @@ function ServiceArea() {
             </a>
           </div>
 
-          {/* Map — hand-drawn croquis with interactive pins */}
           <div style={{
             position: "relative",
             aspectRatio: "1105 / 1423",
@@ -281,10 +273,7 @@ function ServiceArea() {
                   display: "block",
                   opacity: 0.75
                 }} />
-              
-              {/* Labels and dots are baked into the image itself */}
             </div>
-
             <div style={{
               position: "absolute", top: 16, left: 16,
               fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase",
@@ -301,7 +290,6 @@ function ServiceArea() {
         </div>
       </div>
     </section>);
-
 }
 
 function Contact() {
@@ -417,7 +405,6 @@ function Contact() {
                   Send another
                 </button>
               </div> :
-
             <form onSubmit={(e) => {e.preventDefault();setSubmitted(true);}}>
                 <div style={{
                 fontFamily: "var(--serif)",
@@ -429,7 +416,6 @@ function Contact() {
               }}>
                   Tell us about your home, your timeline, and what you've been dreaming up.
                 </div>
-
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 24 }} className="form-grid">
                   <DarkField label="Your name" value={form.name} onChange={(v) => update("name", v)} placeholder="Jane Doe" />
                   <DarkField label="Email" type="email" value={form.email} onChange={(v) => update("email", v)} placeholder="jane@home.com" />
@@ -437,7 +423,6 @@ function Contact() {
                   <DarkSelect label="City" value={form.city} onChange={(v) => update("city", v)}
                 options={["Hampton", "Newport News", "Williamsburg", "Yorktown", "Norfolk", "Portsmouth", "Chesapeake", "Virginia Beach", "Other"]} />
                 </div>
-
                 <div style={{ marginBottom: 32 }}>
                   <label style={{
                   fontSize: 11, fontWeight: 500,
@@ -458,10 +443,8 @@ function Contact() {
                   )}
                   </div>
                 </div>
-
                 <DarkField label="Tell us a bit about it" textarea value={form.message} onChange={(v) => update("message", v)}
               placeholder="Square footage, must-haves, ideal start window..." />
-
                 <button type="submit" className="btn btn-primary" style={{ marginTop: 40, padding: "16px 28px" }}>
                   Schedule my consultation
                   <Icon.Arrow size={14} />
@@ -475,7 +458,6 @@ function Contact() {
         </div>
       </div>
     </section>);
-
 }
 
 function DarkField({ label, value, onChange, placeholder, type = "text", textarea = false }) {
@@ -503,8 +485,6 @@ function DarkField({ label, value, onChange, placeholder, type = "text", textare
           outline: "none",
           resize: "vertical"
         }} /> :
-
-
       <input
         type={type}
         value={value}
@@ -520,10 +500,8 @@ function DarkField({ label, value, onChange, placeholder, type = "text", textare
           fontSize: 16,
           outline: "none"
         }} />
-
       }
     </div>);
-
 }
 
 function DarkSelect({ label, value, onChange, options }) {
@@ -548,11 +526,9 @@ function DarkSelect({ label, value, onChange, options }) {
           outline: "none",
           appearance: "none"
         }}>
-        
         {options.map((o) => <option key={o} value={o} style={{ background: "var(--ink)" }}>{o}</option>)}
       </select>
     </div>);
-
 }
 
 function Footer() {
@@ -621,7 +597,6 @@ function Footer() {
         </div>
       </div>
     </footer>);
-
 }
 
 Object.assign(window, { Gallery, ServiceArea, Contact, Footer });
