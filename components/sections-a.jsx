@@ -84,7 +84,7 @@ const SERVICES = [
   tag: "Galley · open-concept · butler's pantry",
   body: "Rework the layout, open the wall, reface or rebuild. Kitchens that hold up to weeknight dinners and family holidays alike. Cabinetry, stone, and lighting that match how you actually cook.",
   bullets: ["Layout reconfiguration", "Custom cabinetry", "Stone & quartz counters", "Pantries & islands"],
-  img: "assets/cocina 1.png"
+  img: "assets/cocina 5.png"
 },
 {
   icon: Icon.House,
