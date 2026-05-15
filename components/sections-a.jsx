@@ -67,7 +67,6 @@ function About() {
         </div>
       </div>
     </section>);
-
 }
 
 const SERVICES = [
@@ -76,21 +75,24 @@ const SERVICES = [
   name: "Bathrooms",
   tag: "Master suites · guest baths · powder rooms",
   body: "Full gut remodels and considered refreshes with custom tile, walk-in showers, freestanding tubs, vanities built to last. Where most of the daily ritual happens.",
-  bullets: ["Walk-in & wet-room showers", "Custom tile & stonework", "Vanities & cabinetry", "Heated floors"]
+  bullets: ["Walk-in & wet-room showers", "Custom tile & stonework", "Vanities & cabinetry", "Heated floors"],
+  img: "assets/baño 1.png"
 },
 {
   icon: Icon.Kitchen,
   name: "Kitchens",
   tag: "Galley · open-concept · butler's pantry",
   body: "Rework the layout, open the wall, reface or rebuild. Kitchens that hold up to weeknight dinners and family holidays alike. Cabinetry, stone, and lighting that match how you actually cook.",
-  bullets: ["Layout reconfiguration", "Custom cabinetry", "Stone & quartz counters", "Pantries & islands"]
+  bullets: ["Layout reconfiguration", "Custom cabinetry", "Stone & quartz counters", "Pantries & islands"],
+  img: "assets/cocina 1.png"
 },
 {
   icon: Icon.House,
   name: "Exterior",
   tag: "Siding · decks · porches · roofing",
   body: "Hampton Roads weather is honest with houses. We build exteriors that handle salt air, summer storms, and shoulder seasons, and look right on the street twenty years from now.",
-  bullets: ["Siding & trim", "Decks & screened porches", "Roofing & gutters", "Outdoor living"]
+  bullets: ["Siding & trim", "Decks & screened porches", "Roofing & gutters", "Outdoor living"],
+  img: "assets/exterior 1.png"
 }];
 
 
@@ -152,7 +154,6 @@ function Services() {
                     gap: 20,
                     fontFamily: "inherit"
                   }}>
-                  
                   <div style={{
                     width: 52, height: 52,
                     borderRadius: "50%",
@@ -178,7 +179,6 @@ function Services() {
                   </div>
                   <Icon.Arrow size={16} />
                 </button>);
-
             })}
           </div>
 
@@ -238,18 +238,15 @@ function Services() {
                 <Icon.Arrow size={14} />
               </a>
             </div>
-            <image-slot
-              id={`service-img-${active}`}
-              shape="rect"
-              radius="0"
-              placeholder={`${SERVICES[active].name} photo`}
-              style={{ width: "100%", height: "100%", minHeight: 400 }}>
-            </image-slot>
+            <img
+              src={SERVICES[active].img}
+              alt={SERVICES[active].name}
+              style={{ width: "100%", height: "100%", minHeight: 400, objectFit: "cover" }}
+            />
           </div>
         </div>
       </div>
     </section>);
-
 }
 
 const PROCESS_STEPS = [
@@ -341,7 +338,6 @@ function Process() {
         </div>
       </div>
     </section>);
-
 }
 
 Object.assign(window, { About, Services, Process });
