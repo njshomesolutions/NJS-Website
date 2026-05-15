@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NJS Home Solutions — Hampton Roads Renovations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* Print page setup */
+  @page {
+    size: Letter portrait;
+    margin: 0.5in;
+  }
+
+  html, body {
+    background: var(--cream) !important;
+  }
+
+  /* Force colors to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Kill nav, sticky, hover/animations */
+  header[style*="position: fixed"],
+  header[style*="position:fixed"] { display: none !important; }
+
+  /* Make sure tweaks panel doesn't show */
+  [id*="tweaks"], .tweaks-panel { display: none !important; }
+
+  /* Reset section paddings to be tighter for print */
+  section {
+    padding: 32px 0 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Reset top padding on hero (was set to 140 to clear nav) */
+  #top { padding-top: 24px !important; }
+
+  /* Each major section starts on a new page */
+  #about, #services, #work, #process, #reviews, #area, #contact, footer {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  /* Avoid breaking inside cards */
+  .gallery-grid > a,
+  .services-grid,
+  .process-grid > div,
+  .footer-grid > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Clamp huge full-viewport heights for print */
+  .hero-grid {
+    min-height: 0 !important;
+    grid-template-columns: 1.1fr 1fr !important;
+  }
+  .hero-grid > div:last-child {
+    height: 600px !important;
+    min-height: 0 !important;
+  }
+  #top.fullbleed-hero, [id="top"][style*="100vh"] {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+
+  /* Image slot internal placeholder text — keep visible */
+  image-slot { background: var(--paper-warm); }
+
+  /* Avoid orphaned headings */
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+
+  /* Disable animations */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Marquee — turn into static row */
+  [style*="animation: marquee"] {
+    animation: none !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    white-space: normal !important;
+  }
+
+  /* Hide scroll-only chrome */
+  .hide-mobile { /* leave visible in print */ }
+
+  /* Force gallery grid to a simpler 2-up for print */
+  .gallery-grid {
+    grid-template-columns: repeat(6, 1fr) !important;
+    grid-auto-rows: auto !important;
+  }
+  .gallery-grid > a {
+    grid-column: span 3 !important;
+    grid-row: span 1 !important;
+    min-height: 280px !important;
+  }
+
+  /* Process becomes 2-col on print so it isn't squished */
+  .process-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .process-grid > div {
+    border-right: none !important;
+    border-bottom: 1px solid var(--rule);
+    padding: 24px !important;
+  }
+
+  /* Footer cleanup */
+  footer { padding-top: 32px !important; padding-bottom: 16px !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+</style>
+</head>
+<body data-palette="heritage">
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script src="image-slot.js"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="components/shared.jsx"></script>
+  <script type="text/babel" src="components/hero.jsx"></script>
+  <script type="text/babel" src="components/sections-a.jsx"></script>
+  <script type="text/babel" src="components/sections-b.jsx"></script>
+  <script type="text/babel" src="components/app.jsx"></script>
+
+  <script type="text/babel">
+    // Auto-print once everything has settled
+    (async () => {
+      // Wait for fonts
+      if (document.fonts && document.fonts.ready) {
+        try { await document.fonts.ready; } catch (e) {}
+      }
+      // Wait for React + Babel JSX scripts to mount
+      const waitForRoot = () => new Promise(resolve => {
+        const check = () => {
+          if (document.querySelector("#root").children.length > 0) resolve();
+          else setTimeout(check, 100);
+        };
+        check();
+      });
+      await waitForRoot();
+      // Final settle
+      await new Promise(r => setTimeout(r, 800));
+      window.print();
+    })();
+  </script>
+</body>
+</html>
