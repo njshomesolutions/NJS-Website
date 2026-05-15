@@ -624,4 +624,4 @@ function Footer() {
 
 }
 
-Object.assign(window, { Gallery, Testimonials, ServiceArea, Contact, Footer });
+Object.assign(window, { Gallery, ServiceArea, Contact, Footer });
