@@ -130,34 +130,34 @@ function HeroSplit() {
             height: "78vh",
             minHeight: 560,
           }}>
-            {/* Main hero image */}
-            <image-slot
-              id="hero-main"
-              shape="rect"
-              radius="2"
-              placeholder="Drop hero photo · kitchen / bath wide shot"
+            {/* Foto principal - cocina 1 */}
+            <img
+              src="assets/cocina 1.png"
+              alt="Kitchen renovation"
               style={{
                 position:"absolute",
                 top: 0, right: 0,
                 width: "82%",
                 height: "72%",
+                objectFit: "cover",
+                borderRadius: 2,
               }}
-            ></image-slot>
-            {/* Detail image */}
-            <image-slot
-              id="hero-detail"
-              shape="rect"
-              radius="2"
-              placeholder="Drop detail photo"
+            />
+            {/* Foto detalle - cocina 2 */}
+            <img
+              src="assets/cocina 2.png"
+              alt="Kitchen detail"
               style={{
                 position:"absolute",
                 bottom: 80,
                 left: 0,
                 width: "44%",
                 height: "38%",
+                objectFit: "cover",
+                borderRadius: 2,
                 boxShadow: "0 30px 60px rgba(20,32,43,0.18)",
               }}
-            ></image-slot>
+            />
             {/* Floating tag */}
             <div style={{
               position:"absolute",
@@ -237,24 +237,22 @@ function HeroFullBleed() {
       color: "var(--cream)",
       overflow:"hidden",
     }}>
-      <image-slot
-        id="hero-fullbleed"
-        shape="rect"
-        radius="0"
-        placeholder="Drop hero photo · wide bathroom / kitchen"
+      <img
+        src="assets/cocina 1.png"
+        alt="Hero"
         style={{
           position:"absolute",
           inset: 0,
           width: "100%",
           height: "100%",
+          objectFit: "cover",
           opacity: 0.55,
         }}
-      ></image-slot>
+      />
       <div style={{
         position:"absolute", inset:0,
         background: "linear-gradient(180deg, rgba(20,32,43,0.5) 0%, rgba(20,32,43,0.2) 40%, rgba(20,32,43,0.85) 100%)",
       }}></div>
-
       <div className="container" style={{
         position:"relative",
         paddingTop: 200,
@@ -265,7 +263,6 @@ function HeroFullBleed() {
         justifyContent:"flex-end",
       }}>
         <span className="eyebrow" style={{color:"var(--gold)"}}>
-          <span style={{background:"var(--gold)"}}></span>
           Hampton Roads · Est. 2017
         </span>
         <h1 className="h-display" style={{
