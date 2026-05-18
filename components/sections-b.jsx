@@ -405,7 +405,15 @@ function Contact() {
                   Send another
                 </button>
               </div> :
-            <form onSubmit={(e) => {e.preventDefault();setSubmitted(true);}}>
+            <form onSubmit={async (e) => {
+              e.preventDefault();
+              await fetch("https://formspree.io/f/mykvyrga", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(form)
+              });
+              setSubmitted(true);
+            }}>
                 <div style={{
                 fontFamily: "var(--serif)",
                 fontSize: 28,
