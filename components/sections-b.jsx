@@ -583,6 +583,22 @@ function Footer() {
               <a href="tel:7578700903" style={{ color: "rgba(245,240,230,0.8)", textDecoration: "none", fontVariantNumeric: "tabular-nums" }}>757-870-0903</a>
               <a href="mailto:info@njshome.com" style={{ color: "rgba(245,240,230,0.8)", textDecoration: "none" }}>info@njshome.com</a>
               <span style={{ color: "rgba(245,240,230,0.6)" }}>Hampton Roads, VA</span>
+              <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
+                <a href="https://www.instagram.com/bluepalmig/" target="_blank" style={{
+                  width: 36, height: 36, borderRadius: "50%",
+                  border: "1px solid rgba(245,240,230,0.3)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "rgba(245,240,230,0.8)", textDecoration: "none",
+                  fontSize: 16, transition: "border-color 0.2s ease"
+                }}>IG</a>
+                <a href="https://www.facebook.com/profile.php?id=61579224363152" target="_blank" style={{
+                  width: 36, height: 36, borderRadius: "50%",
+                  border: "1px solid rgba(245,240,230,0.3)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "rgba(245,240,230,0.8)", textDecoration: "none",
+                  fontSize: 16, transition: "border-color 0.2s ease"
+                }}>FB</a>
+              </div>
             </div>
           </div>
         </div>
