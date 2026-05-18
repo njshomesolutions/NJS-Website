@@ -6,7 +6,7 @@ const PROJECTS = [
 { id: "p3", name: "Wraparound Porch Refresh", city: "Williamsburg", cat: "Exterior", year: "2024", note: "New decking · trim · paint", img: "assets/exterior 3.png" },
 { id: "p4", name: "Guest Bath Refresh", city: "Hampton", cat: "Bathroom", year: "2024", note: "Tile-to-ceiling · floating vanity", img: "assets/baño 2.png" },
 { id: "p5", name: "Family Kitchen Reset", city: "Chesapeake", cat: "Kitchen", year: "2024", note: "Island · pantry · range hood", img: "assets/cocina 4.png" },
-{ id: "p6", name: "Front Elevation", city: "Yorktown", cat: "Exterior", year: "2023", note: "Hardie siding · new entry", img: "assets/exterior 2.png" }];
+{ id: "p6", name: "Front Elevation", city: "Yorktown", cat: "Exterior", year: "2023", note: "Hardie siding · new entry", img: "assets/exterior 1.png" }];
 
 
 function Gallery() {
