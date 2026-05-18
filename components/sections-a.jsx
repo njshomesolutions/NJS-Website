@@ -92,7 +92,7 @@ const SERVICES = [
   tag: "Siding · decks · porches · roofing",
   body: "Hampton Roads weather is honest with houses. We build exteriors that handle salt air, summer storms, and shoulder seasons, and look right on the street twenty years from now.",
   bullets: ["Siding & trim", "Decks & screened porches", "Roofing & gutters", "Outdoor living"],
-  img: "assets/exterior 3.png"
+  img: "assets/exterior 1.png"
 }];
 
 
