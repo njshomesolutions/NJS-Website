@@ -255,3 +255,15 @@ body[data-palette="slate"] {
   --gold: #c89b3c;
   --muted: #6b6b6b;
 }
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .services-grid > div {
+    grid-template-columns: 1fr !important;
+  }
+  .services-grid img {
+    display: none;
+  }
+}
