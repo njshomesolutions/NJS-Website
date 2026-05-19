@@ -1,6 +1,6 @@
 const useState = React.useState;
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYBxXPBoKTYN7pcHrT1Y7UyuF0I6D_iLxT4tBgH2lu_f9vm0BzJsqDd9mBLV1ig6LN/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzCAIrvJ3kXQkwjBI2259wdjGVRd8U_yHqME_a70C2W71Bo0TWy_UpXI4TfQnliUNBw/exec";
 
 const jobs = {
   "Install new flooring": [
