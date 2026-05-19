@@ -1,6 +1,8 @@
 const useState = React.useState;
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYBxXPBoKTYN7pcHrT1Y7UyuF0I6D_iLxT4tBgH2lu_f9vm0BzJsqDd9mBLV1ig6LN/exec";
+
 const jobs = {
-  // FLOORS
   "Install new flooring": [
     { label: "Floor type", type: "select", options: ["Ceramic", "Hardwood", "Vinyl", "Porcelain", "Marble", "Granite"] },
     { label: "Room / Area", type: "text" },
@@ -46,8 +48,6 @@ const jobs = {
     { label: "Status", type: "select", options: ["Pending", "In progress", "Completed"] },
     { label: "Notes", type: "textarea" },
   ],
-
-  // WALLS
   "Paint walls": [
     { label: "Room / Area", type: "text" },
     { label: "Square footage", type: "number" },
@@ -120,8 +120,6 @@ const jobs = {
     { label: "Status", type: "select", options: ["Pending", "In progress", "Completed"] },
     { label: "Notes", type: "textarea" },
   ],
-
-  // CEILING
   "Paint ceiling": [
     { label: "Room / Area", type: "text" },
     { label: "Square footage", type: "number" },
@@ -180,8 +178,6 @@ const jobs = {
     { label: "Status", type: "select", options: ["Pending", "In progress", "Completed"] },
     { label: "Notes", type: "textarea" },
   ],
-
-  // BATHROOM
   "Full bathroom renovation": [
     { label: "Bathroom size (sq ft)", type: "number" },
     { label: "Scope of work", type: "select", options: ["Floor + walls + fixtures", "Floor and walls only", "Fixtures only", "Full including plumbing"] },
@@ -250,8 +246,6 @@ const jobs = {
     { label: "Status", type: "select", options: ["Pending", "In progress", "Completed"] },
     { label: "Notes", type: "textarea" },
   ],
-
-  // KITCHEN
   "Full kitchen renovation": [
     { label: "Kitchen size (sq ft)", type: "number" },
     { label: "Scope of work", type: "select", options: ["Cabinets + countertop + floor", "Cabinets only", "Floor and walls only", "Full including plumbing and electrical"] },
@@ -310,8 +304,6 @@ const jobs = {
     { label: "Status", type: "select", options: ["Pending", "In progress", "Completed"] },
     { label: "Notes", type: "textarea" },
   ],
-
-  // ELECTRICAL
   "Install outlet": [
     { label: "Number of outlets", type: "number" },
     { label: "Outlet type", type: "select", options: ["Standard", "GFCI (bathroom/kitchen)", "USB", "220V"] },
@@ -367,8 +359,6 @@ const jobs = {
     { label: "Status", type: "select", options: ["Pending", "In progress", "Completed"] },
     { label: "Notes", type: "textarea" },
   ],
-
-  // PLUMBING
   "Repair broken pipe": [
     { label: "Exact location", type: "text" },
     { label: "Pipe material", type: "select", options: ["PVC", "Copper", "Galvanized", "CPVC", "Other"] },
@@ -423,8 +413,6 @@ const jobs = {
     { label: "Status", type: "select", options: ["Pending", "In progress", "Completed"] },
     { label: "Notes", type: "textarea" },
   ],
-
-  // DOORS & WINDOWS
   "Install new door": [
     { label: "Door type", type: "select", options: ["Interior", "Exterior", "Sliding", "Folding", "Garage"] },
     { label: "Material", type: "select", options: ["Wood", "Metal", "PVC", "Glass", "Other"] },
@@ -479,8 +467,6 @@ const jobs = {
     { label: "Status", type: "select", options: ["Pending", "In progress", "Completed"] },
     { label: "Notes", type: "textarea" },
   ],
-
-  // EXTERIOR
   "Paint exterior / facade": [
     { label: "Square footage", type: "number" },
     { label: "Paint color", type: "text" },
@@ -551,11 +537,17 @@ const categories = {
   "Exterior": ["Paint exterior / facade", "Repair exterior roof", "Install fence or gate", "Repair driveway or walkway", "Waterproof walls"],
 };
 
+function generateWorkOrderNumber() {
+  return String(Math.floor(10000 + Math.random() * 90000));
+}
+
 function Formularios() {
+  const [workOrderNumber] = useState(generateWorkOrderNumber);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedJob, setSelectedJob] = useState("");
   const [values, setValues] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [client, setClient] = useState({ name: "", address: "", phone: "", email: "" });
+  const [status, setStatus] = useState(null);
 
   const currentFields = selectedJob ? jobs[selectedJob] : [];
   const jobsInCategory = selectedCategory ? categories[selectedCategory] : [];
@@ -575,12 +567,35 @@ function Formularios() {
     setValues({ ...values, [label]: value });
   }
 
-  function handleSubmit() {
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setValues({});
-    setSelectedJob("");
-    setSelectedCategory("");
+  function handleClientChange(field, value) {
+    setClient({ ...client, [field]: value });
+  }
+
+  async function handleSubmit() {
+    setStatus("sending");
+    const payload = {
+      workOrderNumber,
+      date: new Date().toLocaleDateString(),
+      clientName: client.name,
+      address: client.address,
+      phone: client.phone,
+      clientEmail: client.email,
+      category: selectedCategory,
+      jobType: selectedJob,
+      fields: values,
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+    }
   }
 
   const inputStyle = {
@@ -590,11 +605,57 @@ function Formularios() {
     borderRadius: 6,
     border: "1px solid #ccc",
     boxSizing: "border-box",
+    fontFamily: "sans-serif",
   };
+
+  const sectionTitle = {
+    fontSize: 13,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    color: "#888",
+    margin: "20px 0 12px",
+    borderBottom: "1px solid #eee",
+    paddingBottom: 6,
+  };
+
+  if (status === "success") {
+    return (
+      <div style={{ maxWidth: 560, margin: "40px auto", fontFamily: "sans-serif", padding: "0 16px", textAlign: "center" }}>
+        <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
+        <h2>Work Order Saved!</h2>
+        <p style={{ color: "#555" }}>Work Order <strong>#{workOrderNumber}</strong> has been saved and a notification has been sent to the team.</p>
+        <button onClick={() => window.location.reload()} style={{ marginTop: 20, padding: "10px 28px", fontSize: 14, backgroundColor: "#1a1a1a", color: "#fff", border: "none", borderRadius: 6, cursor: "pointer" }}>
+          New Work Order
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth: 560, margin: "40px auto", fontFamily: "sans-serif", padding: "0 16px" }}>
-      <h2 style={{ marginBottom: 24 }}>Work Order Form</h2>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+        <h2 style={{ margin: 0 }}>Work Order Form</h2>
+        <span style={{ background: "#1a1a1a", color: "#fff", padding: "4px 12px", borderRadius: 20, fontSize: 13, fontWeight: 600 }}>
+          #{workOrderNumber}
+        </span>
+      </div>
+
+      <div style={sectionTitle}>Client Information</div>
+
+      {[
+        { field: "name", label: "Client Name", type: "text" },
+        { field: "address", label: "Address", type: "text" },
+        { field: "phone", label: "Phone Number", type: "tel" },
+        { field: "email", label: "Email", type: "email" },
+      ].map(({ field, label, type }) => (
+        <div key={field} style={{ marginBottom: 14 }}>
+          <label style={{ display: "block", marginBottom: 4, fontSize: 14, fontWeight: 500 }}>{label}</label>
+          <input type={type} value={client[field]} onChange={(e) => handleClientChange(field, e.target.value)} style={inputStyle} />
+        </div>
+      ))}
+
+      <div style={sectionTitle}>Work Details</div>
 
       <div style={{ marginBottom: 16 }}>
         <label style={{ display: "block", marginBottom: 6, fontWeight: 500 }}>Category</label>
@@ -635,13 +696,13 @@ function Formularios() {
       ))}
 
       {selectedJob && (
-        <button onClick={handleSubmit} style={{ marginTop: 8, padding: "10px 28px", fontSize: 14, backgroundColor: "#1a1a1a", color: "#fff", border: "none", borderRadius: 6, cursor: "pointer" }}>
-          Save record
+        <button onClick={handleSubmit} disabled={status === "sending"} style={{ marginTop: 8, padding: "10px 28px", fontSize: 14, backgroundColor: status === "sending" ? "#888" : "#1a1a1a", color: "#fff", border: "none", borderRadius: 6, cursor: status === "sending" ? "not-allowed" : "pointer" }}>
+          {status === "sending" ? "Saving..." : "Save Work Order"}
         </button>
       )}
 
-      {submitted && (
-        <p style={{ color: "green", marginTop: 12, fontWeight: 500 }}>✓ Record saved successfully</p>
+      {status === "error" && (
+        <p style={{ color: "red", marginTop: 12 }}>Error saving. Please try again.</p>
       )}
     </div>
   );
