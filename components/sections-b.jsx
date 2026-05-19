@@ -358,7 +358,8 @@ function Contact() {
                   <div style={{ fontFamily: "var(--serif)", fontSize: 18 }}>Hampton Roads, Virginia</div>
                 </div>
               </div>
-              <a href="https://www.instagram.com/bluepalmig/" target="_blank" style={{
+              
+              {/*<a href="https://www.instagram.com/bluepalmig/" target="_blank" style={{
                 display: "flex", alignItems: "center", gap: 16,
                 color: "var(--ink)", textDecoration: "none",
                 paddingBottom: 20, borderBottom: "1px solid var(--rule)"
@@ -373,8 +374,8 @@ function Contact() {
                   <div className="small" style={{ textTransform: "uppercase", letterSpacing: "0.18em" }}>Instagram</div>
                   <div style={{ fontFamily: "var(--serif)", fontSize: 18 }}>@bluepalmig</div>
                 </div>
-              </a>
-              <a href="https://www.facebook.com/profile.php?id=61579224363152" target="_blank" style={{
+              </a>*/}
+              <a href="https://https://www.facebook.com/njshomes" target="_blank" style={{
                 display: "flex", alignItems: "center", gap: 16,
                 color: "var(--ink)", textDecoration: "none",
               }}>
@@ -386,7 +387,7 @@ function Contact() {
                 }}>FB</div>
                 <div>
                   <div className="small" style={{ textTransform: "uppercase", letterSpacing: "0.18em" }}>Facebook</div>
-                  <div style={{ fontFamily: "var(--serif)", fontSize: 16 }}>Blue Palm Investment Group LLC</div>
+                  <div style={{ fontFamily: "var(--serif)", fontSize: 16 }}>NJS Home Solutions</div>
                 </div>
               </a>
             </div>
@@ -615,14 +616,14 @@ function Footer() {
               <a href="mailto:info@njshome.com" style={{ color: "rgba(245,240,230,0.8)", textDecoration: "none" }}>info@njshome.com</a>
               <span style={{ color: "rgba(245,240,230,0.6)" }}>Hampton Roads, VA</span>
               <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
-                <a href="https://www.instagram.com/bluepalmig/" target="_blank" style={{
+                {/*<a href="https://www.instagram.com/bluepalmig/" target="_blank" style={{
                   width: 36, height: 36, borderRadius: "50%",
                   border: "1px solid rgba(245,240,230,0.3)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   color: "rgba(245,240,230,0.8)", textDecoration: "none",
                   fontSize: 16, transition: "border-color 0.2s ease"
-                }}>IG</a>
-                <a href="https://www.facebook.com/profile.php?id=61579224363152" target="_blank" style={{
+                }}>IG</a>*/
+                <a href="https://https://www.facebook.com/njshomes" target="_blank" style={{
                   width: 36, height: 36, borderRadius: "50%",
                   border: "1px solid rgba(245,240,230,0.3)",
                   display: "flex", alignItems: "center", justifyContent: "center",
