@@ -1,5 +1,4 @@
 const useState = React.useState;
-
 const jobs = {
   // FLOORS
   "Install new flooring": [
@@ -552,7 +551,7 @@ const categories = {
   "Exterior": ["Paint exterior / facade", "Repair exterior roof", "Install fence or gate", "Repair driveway or walkway", "Waterproof walls"],
 };
 
-export default function Formularios() {
+function Formularios() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedJob, setSelectedJob] = useState("");
   const [values, setValues] = useState({});
