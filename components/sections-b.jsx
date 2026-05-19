@@ -347,7 +347,7 @@ function Contact() {
                   <div style={{ fontFamily: "var(--serif)", fontSize: 22 }}>info@njshome.com</div>
                 </div>
               </a>
-              <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 16, paddingBottom: 20, borderBottom: "1px solid var(--rule)" }}>
                 <div style={{
                   width: 44, height: 44, borderRadius: "50%",
                   background: "var(--ink)", color: "var(--cream)",
@@ -358,6 +358,37 @@ function Contact() {
                   <div style={{ fontFamily: "var(--serif)", fontSize: 18 }}>Hampton Roads, Virginia</div>
                 </div>
               </div>
+              <a href="https://www.instagram.com/bluepalmig/" target="_blank" style={{
+                display: "flex", alignItems: "center", gap: 16,
+                color: "var(--ink)", textDecoration: "none",
+                paddingBottom: 20, borderBottom: "1px solid var(--rule)"
+              }}>
+                <div style={{
+                  width: 44, height: 44, borderRadius: "50%",
+                  background: "var(--ink)", color: "var(--cream)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 13, fontWeight: 600
+                }}>IG</div>
+                <div>
+                  <div className="small" style={{ textTransform: "uppercase", letterSpacing: "0.18em" }}>Instagram</div>
+                  <div style={{ fontFamily: "var(--serif)", fontSize: 18 }}>@bluepalmig</div>
+                </div>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61579224363152" target="_blank" style={{
+                display: "flex", alignItems: "center", gap: 16,
+                color: "var(--ink)", textDecoration: "none",
+              }}>
+                <div style={{
+                  width: 44, height: 44, borderRadius: "50%",
+                  background: "var(--ink)", color: "var(--cream)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 13, fontWeight: 600
+                }}>FB</div>
+                <div>
+                  <div className="small" style={{ textTransform: "uppercase", letterSpacing: "0.18em" }}>Facebook</div>
+                  <div style={{ fontFamily: "var(--serif)", fontSize: 16 }}>Blue Palm Investment Group LLC</div>
+                </div>
+              </a>
             </div>
 
             <div style={{
