@@ -622,7 +622,7 @@ function Footer() {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   color: "rgba(245,240,230,0.8)", textDecoration: "none",
                   fontSize: 16, transition: "border-color 0.2s ease"
-                }}>IG</a>*/
+                }}>IG</a>*/}
                 <a href="https://www.facebook.com/njshomes" target="_blank" style={{
                   width: 36, height: 36, borderRadius: "50%",
                   border: "1px solid rgba(245,240,230,0.3)",
