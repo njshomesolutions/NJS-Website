@@ -1,7 +1,7 @@
 // NJS — Gallery, Testimonials, Service Area, Contact, Footer
 
 const PROJECTS = [
-{ id: "p1", name: "Coastal Master Bath", city: "Virginia Beach", cat: "Bathroom", year: "2025", note: "Wet-room shower · honed marble · brass", img: "assets/baño 1.png" },
+{ id: "p1", name: "Coastal Master Bath", city: "Virginia Beach", cat: "Bathroom", year: "2025", note: "Wet-room shower · honed marble · brass", img: "assets/baño 3.png" },
 { id: "p2", name: "Open Galley Kitchen", city: "Norfolk", cat: "Kitchen", year: "2025", note: "Wall removed · quartz · custom oak", img: "assets/cocina 3.png" },
 { id: "p3", name: "Wraparound Porch Refresh", city: "Williamsburg", cat: "Exterior", year: "2024", note: "New decking · trim · paint", img: "assets/exterior 3.png" },
 { id: "p4", name: "Guest Bath Refresh", city: "Hampton", cat: "Bathroom", year: "2024", note: "Tile-to-ceiling · floating vanity", img: "assets/baño 2.png" },
