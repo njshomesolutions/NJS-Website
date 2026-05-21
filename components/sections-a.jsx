@@ -130,7 +130,6 @@ function Services() {
           border: "1px solid rgba(245,240,230,0.12)",
           minHeight: 540
         }} className="services-grid">
-          {/* Tabs */}
           <div style={{ borderRight: "1px solid rgba(245,240,230,0.12)" }}>
             {SERVICES.map((s, i) => {
               const SIcon = s.icon;
@@ -182,7 +181,6 @@ function Services() {
             })}
           </div>
 
-          {/* Detail panel */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
@@ -254,13 +252,13 @@ const PROCESS_STEPS = [
   n: "01",
   name: "Conversation",
   duration: "Week 1",
-  body: "We come out, walk the space, and listen. No clipboard pitch, just a conversation about how you live in the room and what's been bothering you about it."
+  body: "We start with a call to talk through your project, then schedule a visit to walk the space and understand exactly what you need."
 },
 {
   n: "02",
   name: "Design & estimate",
   duration: "Weeks 2–3",
-  body: "We bring back drawings, finish samples, and a fixed scope, line-item priced. You'll know exactly what's included before anything is signed."
+  body: "We bring back drawings (if needed), finish samples, and a fixed scope. You'll know exactly what's included before anything is signed."
 },
 {
   n: "03",
