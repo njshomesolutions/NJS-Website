@@ -390,7 +390,7 @@ function Contact() {
           </div>
 
           <div style={{
-            background: "var(--ink)",
+            background: "transparent",
             color: "var(--cream)",
             padding: "clamp(40px, 5vw, 64px)",
             position: "relative",
