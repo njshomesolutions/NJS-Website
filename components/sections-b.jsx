@@ -293,10 +293,6 @@ function ServiceArea() {
 }
 
 function Contact() {
-  const [submitted, setSubmitted] = React.useState(false);
-  const [form, setForm] = React.useState({ name: "", email: "", phone: "", project: "Bathroom", city: "Virginia Beach", message: "" });
-  const update = (k, v) => setForm((f) => ({ ...f, [k]: v }));
-
   return (
     <section id="contact" style={{ background: "var(--cream)" }}>
       <div className="container-wide">
@@ -332,6 +328,7 @@ function Contact() {
                   <div style={{ fontFamily: "var(--serif)", fontSize: 22, fontVariantNumeric: "tabular-nums" }}>757-870-0903</div>
                 </div>
               </a>
+
               <a href="mailto:info@njshome.com" style={{
                 display: "flex", alignItems: "center", gap: 16,
                 color: "var(--ink)", textDecoration: "none",
@@ -347,6 +344,7 @@ function Contact() {
                   <div style={{ fontFamily: "var(--serif)", fontSize: 22 }}>info@njshome.com</div>
                 </div>
               </a>
+
               <div style={{ display: "flex", alignItems: "center", gap: 16, paddingBottom: 20, borderBottom: "1px solid var(--rule)" }}>
                 <div style={{
                   width: 44, height: 44, borderRadius: "50%",
@@ -358,24 +356,8 @@ function Contact() {
                   <div style={{ fontFamily: "var(--serif)", fontSize: 18 }}>Hampton Roads, Virginia</div>
                 </div>
               </div>
-              
-              {/*<a href="https://www.instagram.com/bluepalmig/" target="_blank" style={{
-                display: "flex", alignItems: "center", gap: 16,
-                color: "var(--ink)", textDecoration: "none",
-                paddingBottom: 20, borderBottom: "1px solid var(--rule)"
-              }}>
-                <div style={{
-                  width: 44, height: 44, borderRadius: "50%",
-                  background: "var(--ink)", color: "var(--cream)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 13, fontWeight: 600
-                }}>IG</div>
-                <div>
-                  <div className="small" style={{ textTransform: "uppercase", letterSpacing: "0.18em" }}>Instagram</div>
-                  <div style={{ fontFamily: "var(--serif)", fontSize: 18 }}>@bluepalmig</div>
-                </div>
-              </a>*/}
-              <a href="https://https://www.facebook.com/njshomes" target="_blank" style={{
+
+              <a href="https://www.facebook.com/njshomes" target="_blank" style={{
                 display: "flex", alignItems: "center", gap: 16,
                 color: "var(--ink)", textDecoration: "none",
               }}>
@@ -414,90 +396,19 @@ function Contact() {
             position: "relative",
             overflow: "hidden"
           }}>
-            {submitted ?
-            <div style={{ minHeight: 540, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                <div style={{
-                width: 64, height: 64, borderRadius: "50%",
-                border: "1px solid var(--gold)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                marginBottom: 32, color: "var(--gold)"
-              }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="4 12 10 18 20 6" />
-                  </svg>
-                </div>
-                <h3 className="h-section" style={{ color: "var(--cream)", marginBottom: 16 }}>
-                  Thanks, {form.name.split(" ")[0] || "friend"}.
-                </h3>
-                <p className="lead" style={{ color: "rgba(245,240,230,0.7)", marginBottom: 32 }}>
-                  We've got your note. Expect a call from a real person at NJS within one
-                  business day to set up your consultation.
-                </p>
-                <button onClick={() => setSubmitted(false)} className="btn btn-ghost-light" style={{ alignSelf: "flex-start" }}>
-                  Send another
-                </button>
-              </div> :
-            <form onSubmit={async (e) => {
-              e.preventDefault();
-              await fetch("https://formspree.io/f/mykvyrga", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form)
-              });
-              setSubmitted(true);
-            }}>
-                <div style={{
-                fontFamily: "var(--serif)",
-                fontSize: 28,
-                lineHeight: 1.1,
-                marginBottom: 40,
-                maxWidth: 460,
-                letterSpacing: "-0.01em"
-              }}>
-                  Tell us about your home, your timeline, and what you've been dreaming up.
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 24 }} className="form-grid">
-                  <DarkField label="Your name" value={form.name} onChange={(v) => update("name", v)} placeholder="Jane Doe" />
-                  <DarkField label="Email" type="email" value={form.email} onChange={(v) => update("email", v)} placeholder="jane@home.com" />
-                  <DarkField label="Phone" type="tel" value={form.phone} onChange={(v) => update("phone", v)} placeholder="757-555-0100" />
-                  <DarkSelect label="City" value={form.city} onChange={(v) => update("city", v)}
-                options={["Hampton", "Newport News", "Williamsburg", "Yorktown", "Norfolk", "Portsmouth", "Chesapeake", "Virginia Beach", "Other"]} />
-                </div>
-                <div style={{ marginBottom: 32 }}>
-                  <label style={{
-                  fontSize: 11, fontWeight: 500,
-                  letterSpacing: "0.14em", textTransform: "uppercase",
-                  color: "rgba(245,240,230,0.5)", marginBottom: 12, display: "block"
-                }}>Project type</label>
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                    {["Bathroom", "Kitchen", "Exterior", "Multiple"].map((p) =>
-                  <button key={p} type="button" onClick={() => update("project", p)} style={{
-                    padding: "10px 18px",
-                    borderRadius: 999,
-                    border: `1px solid ${form.project === p ? "var(--gold)" : "rgba(245,240,230,0.3)"}`,
-                    background: form.project === p ? "var(--gold)" : "transparent",
-                    color: form.project === p ? "var(--ink)" : "var(--cream)",
-                    fontSize: 13, fontFamily: "inherit", cursor: "pointer",
-                    transition: "all 0.2s ease"
-                  }}>{p}</button>
-                  )}
-                  </div>
-                </div>
-                <DarkField label="Tell us a bit about it" textarea value={form.message} onChange={(v) => update("message", v)}
-              placeholder="Square footage, must-haves, ideal start window..." />
-                <button type="submit" className="btn btn-primary" style={{ marginTop: 40, padding: "16px 28px" }}>
-                  Schedule my consultation
-                  <Icon.Arrow size={14} />
-                </button>
-                <div className="small" style={{ color: "rgba(245,240,230,0.5)", marginTop: 16 }}>
-                  Free, no obligation. We'll call within 1 business day.
-                </div>
-              </form>
-            }
+            <iframe
+              src="https://njshomesolutions.dripjobs.com"
+              width="100%"
+              height="900px"
+              style={{ border: "none", borderRadius: "8px", display: "block" }}
+              title="Schedule a Consultation"
+            />
           </div>
+
         </div>
       </div>
-    </section>);
+    </section>
+  );
 }
 
 function DarkField({ label, value, onChange, placeholder, type = "text", textarea = false }) {
